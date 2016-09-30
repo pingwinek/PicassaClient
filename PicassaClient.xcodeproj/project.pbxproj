@@ -16,6 +16,9 @@
 		0423D52E1D9ED14C0070BA4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0423D52C1D9ED14C0070BA4D /* LaunchScreen.storyboard */; };
 		0423D5391D9ED14D0070BA4D /* PicassaClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5381D9ED14D0070BA4D /* PicassaClientTests.m */; };
 		0423D5441D9ED14D0070BA4D /* PicassaClientUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5431D9ED14D0070BA4D /* PicassaClientUITests.m */; };
+		0423D55D1D9F12340070BA4D /* AlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D55C1D9F12340070BA4D /* AlbumCell.m */; };
+		0423D5621D9F16140070BA4D /* AlbumPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5611D9F16140070BA4D /* AlbumPhotoCell.m */; };
+		0423D5651D9F16B40070BA4D /* GalleryDetailsVCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5641D9F16B40070BA4D /* GalleryDetailsVCViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +57,12 @@
 		0423D53F1D9ED14D0070BA4D /* PicassaClientUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicassaClientUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0423D5431D9ED14D0070BA4D /* PicassaClientUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PicassaClientUITests.m; sourceTree = "<group>"; };
 		0423D5451D9ED14D0070BA4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0423D55B1D9F12340070BA4D /* AlbumCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumCell.h; sourceTree = "<group>"; };
+		0423D55C1D9F12340070BA4D /* AlbumCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumCell.m; sourceTree = "<group>"; };
+		0423D5601D9F16140070BA4D /* AlbumPhotoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumPhotoCell.h; sourceTree = "<group>"; };
+		0423D5611D9F16140070BA4D /* AlbumPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumPhotoCell.m; sourceTree = "<group>"; };
+		0423D5631D9F16B40070BA4D /* GalleryDetailsVCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryDetailsVCViewController.h; sourceTree = "<group>"; };
+		0423D5641D9F16B40070BA4D /* GalleryDetailsVCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryDetailsVCViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,12 +113,7 @@
 		0423D51A1D9ED14C0070BA4D /* PicassaClient */ = {
 			isa = PBXGroup;
 			children = (
-				0423D51E1D9ED14C0070BA4D /* AppDelegate.h */,
-				0423D51F1D9ED14C0070BA4D /* AppDelegate.m */,
-				0423D5211D9ED14C0070BA4D /* FirstViewController.h */,
-				0423D5221D9ED14C0070BA4D /* FirstViewController.m */,
-				0423D5241D9ED14C0070BA4D /* SecondViewController.h */,
-				0423D5251D9ED14C0070BA4D /* SecondViewController.m */,
+				0423D55E1D9F12420070BA4D /* Classes */,
 				0423D5271D9ED14C0070BA4D /* Main.storyboard */,
 				0423D52A1D9ED14C0070BA4D /* Assets.xcassets */,
 				0423D52C1D9ED14C0070BA4D /* LaunchScreen.storyboard */,
@@ -143,6 +147,33 @@
 				0423D5451D9ED14D0070BA4D /* Info.plist */,
 			);
 			path = PicassaClientUITests;
+			sourceTree = "<group>";
+		};
+		0423D55E1D9F12420070BA4D /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				0423D55F1D9F12540070BA4D /* Cells */,
+				0423D51E1D9ED14C0070BA4D /* AppDelegate.h */,
+				0423D51F1D9ED14C0070BA4D /* AppDelegate.m */,
+				0423D5211D9ED14C0070BA4D /* FirstViewController.h */,
+				0423D5221D9ED14C0070BA4D /* FirstViewController.m */,
+				0423D5241D9ED14C0070BA4D /* SecondViewController.h */,
+				0423D5251D9ED14C0070BA4D /* SecondViewController.m */,
+				0423D5631D9F16B40070BA4D /* GalleryDetailsVCViewController.h */,
+				0423D5641D9F16B40070BA4D /* GalleryDetailsVCViewController.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		0423D55F1D9F12540070BA4D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0423D55B1D9F12340070BA4D /* AlbumCell.h */,
+				0423D55C1D9F12340070BA4D /* AlbumCell.m */,
+				0423D5601D9F16140070BA4D /* AlbumPhotoCell.h */,
+				0423D5611D9F16140070BA4D /* AlbumPhotoCell.m */,
+			);
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -275,10 +306,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0423D5621D9F16140070BA4D /* AlbumPhotoCell.m in Sources */,
 				0423D5261D9ED14C0070BA4D /* SecondViewController.m in Sources */,
+				0423D55D1D9F12340070BA4D /* AlbumCell.m in Sources */,
 				0423D5201D9ED14C0070BA4D /* AppDelegate.m in Sources */,
 				0423D5231D9ED14C0070BA4D /* FirstViewController.m in Sources */,
 				0423D51D1D9ED14C0070BA4D /* main.m in Sources */,
+				0423D5651D9F16B40070BA4D /* GalleryDetailsVCViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +538,7 @@
 				0423D54A1D9ED14D0070BA4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0423D54B1D9ED14D0070BA4D /* Build configuration list for PBXNativeTarget "PicassaClientTests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +547,7 @@
 				0423D54D1D9ED14D0070BA4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0423D54E1D9ED14D0070BA4D /* Build configuration list for PBXNativeTarget "PicassaClientUITests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +556,7 @@
 				0423D5501D9ED14D0070BA4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

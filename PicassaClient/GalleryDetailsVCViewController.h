@@ -1,5 +1,5 @@
 //
-//  FirstViewController.h
+//  GalleryDetailsVCViewController.h
 //  PicassaClient
 //
 //  Created by mac on 30.09.2016.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface GalleryDetailsVCViewController : UIViewController
 
 @end
-
