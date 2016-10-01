@@ -57,7 +57,7 @@
                                         <connections>
                                             <outlet property="albumPhoto" destination="c09-0K-Jv6" id="DXA-Ww-8IE"/>
                                             <outlet property="albumTitle" destination="eaY-VT-lqH" id="Q42-zW-SFZ"/>
-                                            <segue destination="b1e-i8-fpm" kind="push" id="HL8-Zc-5ai"/>
+                                            <segue destination="b1e-i8-fpm" kind="push" identifier="albumDetailsSegue" id="HL8-Zc-5ai"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -82,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="1336.5" y="-371.5"/>
         </scene>
-        <!--Gallery DetailsVC View Controller-->
+        <!--Gallery DetailsVC-->
         <scene sceneID="Rd9-16-kta">
             <objects>
-                <viewController id="b1e-i8-fpm" customClass="GalleryDetailsVCViewController" sceneMemberID="viewController">
+                <viewController id="b1e-i8-fpm" customClass="GalleryDetailsVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jRi-yW-1tA"/>
                         <viewControllerLayoutGuide type="bottom" id="WAV-Et-GQp"/>
@@ -126,12 +126,23 @@
                                                         <constraint firstAttribute="width" constant="68" id="qCz-PY-mtU"/>
                                                     </constraints>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6B-JC-CLd">
+                                                    <rect key="frame" x="15" y="23" width="248" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="g0W-fF-vai"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="IrF-t6-ugR" firstAttribute="leading" secondItem="kZm-C6-hS9" secondAttribute="trailing" constant="58" id="5VZ-Lf-wMh"/>
+                                                <constraint firstItem="b6B-JC-CLd" firstAttribute="leading" secondItem="aZi-SV-0pm" secondAttribute="leadingMargin" constant="7" id="7eZ-ga-3Yb"/>
                                                 <constraint firstItem="2q2-Rb-lFp" firstAttribute="top" secondItem="aZi-SV-0pm" secondAttribute="topMargin" constant="-4" id="A4w-QE-2J9"/>
                                                 <constraint firstItem="2q2-Rb-lFp" firstAttribute="leading" secondItem="IrF-t6-ugR" secondAttribute="trailing" constant="62" id="UGt-qc-uFG"/>
                                                 <constraint firstItem="kZm-C6-hS9" firstAttribute="top" secondItem="aZi-SV-0pm" secondAttribute="topMargin" constant="-5" id="WXZ-dU-qax"/>
+                                                <constraint firstItem="b6B-JC-CLd" firstAttribute="top" secondItem="aZi-SV-0pm" secondAttribute="topMargin" constant="15" id="dL7-aJ-1qK"/>
                                                 <constraint firstItem="kZm-C6-hS9" firstAttribute="leading" secondItem="aZi-SV-0pm" secondAttribute="leadingMargin" constant="19" id="kag-Lh-UHI"/>
                                                 <constraint firstItem="IrF-t6-ugR" firstAttribute="top" secondItem="aZi-SV-0pm" secondAttribute="topMargin" constant="-4" id="pQw-At-DGh"/>
                                             </constraints>
@@ -140,6 +151,7 @@
                                             <outlet property="img1" destination="kZm-C6-hS9" id="haj-MD-1Fu"/>
                                             <outlet property="img2" destination="2q2-Rb-lFp" id="ygl-w8-3tB"/>
                                             <outlet property="img3" destination="2q2-Rb-lFp" id="nFJ-rQ-51r"/>
+                                            <outlet property="titleOfAlbum" destination="b6B-JC-CLd" id="BEI-vQ-Iud"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

@@ -13,4 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *img2;
 @property (weak, nonatomic) IBOutlet UIImageView *img3;
 
+@property (weak, nonatomic) IBOutlet UILabel *titleOfAlbum;
+
 @end

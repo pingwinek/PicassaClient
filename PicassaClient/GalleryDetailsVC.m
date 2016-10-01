@@ -1,24 +1,23 @@
 //
-//  FirstViewController.m
+//  GalleryDetailsVCViewController.m
 //  PicassaClient
 //
 //  Created by mac on 30.09.2016.
 //  Copyright © 2016 mac. All rights reserved.
 //
 
-#import "FirstViewController.h"
-#import "AlbumCell.h"
 #import "GalleryDetailsVC.h"
+#import "AlbumPhotoCell.h"
 
-@interface FirstViewController ()
+@interface GalleryDetailsVC ()
 
 @end
 
-@implementation FirstViewController
+@implementation GalleryDetailsVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -35,28 +34,30 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 120.0;
+    return 70.0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 1;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    AlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"albumCellID"];
+    AlbumPhotoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"albumPhotoCellID"];
+    cell.titleOfAlbum.text = self.albumTitle;
     
     return cell;
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
-    if([segue.identifier isEqualToString:@"albumDetailsSegue"]){
-        
-        GalleryDetailsVC *gallery = segue.destinationViewController;
-        gallery.albumTitle = @"Our new album";
-    }
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
 
 @end
