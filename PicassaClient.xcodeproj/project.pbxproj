@@ -20,6 +20,9 @@
 		0423D5621D9F16140070BA4D /* AlbumPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5611D9F16140070BA4D /* AlbumPhotoCell.m */; };
 		0423D5651D9F16B40070BA4D /* GalleryDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5641D9F16B40070BA4D /* GalleryDetailsVC.m */; };
 		0423D56A1D9F93870070BA4D /* EditPicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5691D9F93870070BA4D /* EditPicVC.m */; };
+		0423D56C1D9FF1940070BA4D /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0423D56B1D9FF1940070BA4D /* CoreImage.framework */; };
+		0423D56E1D9FF19D0070BA4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0423D56D1D9FF19D0070BA4D /* QuartzCore.framework */; };
+		0423D5701D9FF1A50070BA4D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0423D56F1D9FF1A50070BA4D /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +69,9 @@
 		0423D5641D9F16B40070BA4D /* GalleryDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryDetailsVC.m; sourceTree = "<group>"; };
 		0423D5681D9F93870070BA4D /* EditPicVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPicVC.h; sourceTree = "<group>"; };
 		0423D5691D9F93870070BA4D /* EditPicVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPicVC.m; sourceTree = "<group>"; };
+		0423D56B1D9FF1940070BA4D /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		0423D56D1D9FF19D0070BA4D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0423D56F1D9FF1A50070BA4D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +79,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0423D5701D9FF1A50070BA4D /* AssetsLibrary.framework in Frameworks */,
+				0423D56E1D9FF19D0070BA4D /* QuartzCore.framework in Frameworks */,
+				0423D56C1D9FF1940070BA4D /* CoreImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +105,9 @@
 		0423D50F1D9ED14C0070BA4D = {
 			isa = PBXGroup;
 			children = (
+				0423D56F1D9FF1A50070BA4D /* AssetsLibrary.framework */,
+				0423D56D1D9FF19D0070BA4D /* QuartzCore.framework */,
+				0423D56B1D9FF1940070BA4D /* CoreImage.framework */,
 				0423D51A1D9ED14C0070BA4D /* PicassaClient */,
 				0423D5371D9ED14D0070BA4D /* PicassaClientTests */,
 				0423D5421D9ED14D0070BA4D /* PicassaClientUITests */,

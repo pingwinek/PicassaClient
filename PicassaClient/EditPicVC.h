@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreImage/CoreImage.h>
 
 @interface EditPicVC : UIViewController
 
 @property(nonatomic, weak) IBOutlet UIImageView *imgView;
+@property(weak,nonatomic) IBOutlet UIView *viewFilterPreview;
+
 @property(nonatomic,strong) UIImage *img;
+@property(nonatomic,strong) CIImage *filterPreviewImage;
+@property(nonatomic,strong) NSMutableDictionary *filters;
+@property(nonatomic,strong) CIContext *context;
 
 @end
