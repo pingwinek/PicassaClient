@@ -14,6 +14,10 @@
 @end
 
 @implementation EditPicVC
+{
+    UIBarButtonItem *editBtn;
+    UIBarButtonItem *doneBtn;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,11 +25,46 @@
     //set image
     _filterPreviewImage = [CIImage imageWithCGImage:self.img.CGImage];
     [self loadFilters];
+    
+    //navigation bar
+    UIBarButtonItem *actionbtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(action:)];
+    self.navigationItem.leftBarButtonItem = actionbtn;
+    
+    editBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(edit:)];
+    
+    doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(done:)];
+    
+    self.navigationItem.rightBarButtonItem = editBtn;
+    
+    [_imgView setImage:_img];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma marks - Buttons Action
+-(IBAction)edit:(id)sender{
+    
+    [UIView animateWithDuration:.5
+                     animations:^{
+                         CGRect frame = _imgView.frame;
+                         frame.origin.y -= _viewFilterPreview.frame.size.height;
+                         [_imgView setFrame:frame];
+                     }];
+    self.navigationItem.rightBarButtonItem = doneBtn;
+}
+
+-(IBAction)done:(id)sender{
+    
+    [UIView animateWithDuration:.5
+                     animations:^{
+                         CGRect frame = _imgView.frame;
+                         frame.origin.y += _viewFilterPreview.frame.size.height;
+                         [_imgView setFrame:frame];
+                     }];
+    self.navigationItem.rightBarButtonItem = editBtn;
 }
 
 #pragma mark View Helpers
