@@ -188,22 +188,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="83" y="313" width="210" height="42"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8R-0w-Irb">
+                                <rect key="frame" x="20" y="347" width="335" height="240"/>
+                                <state key="normal" title="Take picture from Gallery"/>
+                                <connections>
+                                    <action selector="takePictureFromGallery:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="nNK-xJ-0oW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yCX-6g-Gja">
+                                <rect key="frame" x="20" y="85" width="335" height="240"/>
+                                <state key="normal" title="Take picture from Camera"/>
+                                <connections>
+                                    <action selector="takePictureFromCamera:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="nrg-3J-XBC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstItem="d8R-0w-Irb" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="4Df-J0-pkH"/>
+                            <constraint firstItem="yCX-6g-Gja" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="5vA-v4-R0B"/>
+                            <constraint firstItem="yCX-6g-Gja" firstAttribute="trailing" secondItem="QS5-Rx-YEW" secondAttribute="trailingMargin" id="LEr-1a-nRY"/>
+                            <constraint firstItem="d8R-0w-Irb" firstAttribute="top" secondItem="yCX-6g-Gja" secondAttribute="bottom" constant="22" id="aH3-NA-Xw3"/>
+                            <constraint firstItem="yCX-6g-Gja" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="21" id="i8Q-EN-Gjw"/>
+                            <constraint firstItem="d8R-0w-Irb" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" id="s8w-Cz-hSJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="NmI-am-DXW"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="buttonCamera" destination="yCX-6g-Gja" id="ZGa-ei-MKc"/>
+                        <outlet property="buttonPicture" destination="d8R-0w-Irb" id="75p-0D-1iq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -228,6 +243,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
+        </scene>
+        <!--Edit PicVC-->
+        <scene sceneID="igM-nN-a5y">
+            <objects>
+                <viewController storyboardIdentifier="EditPictureVC" id="WVe-AH-6LW" customClass="EditPicVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="x3F-NC-eQ9"/>
+                        <viewControllerLayoutGuide type="bottom" id="gwW-fY-m9Y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5cL-Mg-Qz2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GdZ-Y7-JvW">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GdZ-Y7-JvW" firstAttribute="top" secondItem="5cL-Mg-Qz2" secondAttribute="topMargin" id="Uxo-aL-DRl"/>
+                            <constraint firstItem="GdZ-Y7-JvW" firstAttribute="leading" secondItem="5cL-Mg-Qz2" secondAttribute="leadingMargin" constant="-20" id="ami-E7-spR"/>
+                            <constraint firstItem="gwW-fY-m9Y" firstAttribute="top" secondItem="GdZ-Y7-JvW" secondAttribute="bottom" id="bvj-aR-lk1"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GdZ-Y7-JvW" secondAttribute="trailing" constant="-20" id="urS-sY-XMa"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="imgView" destination="GdZ-Y7-JvW" id="QM3-kJ-oNE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nF9-7U-bal" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="217.5" y="-890.5"/>
         </scene>
         <!--First-->
         <scene sceneID="q4f-qS-at0">

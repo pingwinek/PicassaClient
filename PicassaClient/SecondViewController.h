@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SecondViewController : UIViewController
+@interface SecondViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
+@property (weak, nonatomic) IBOutlet UIButton *buttonCamera;
+@property (weak, nonatomic) IBOutlet UIButton *buttonPicture;
+
+-(IBAction)takePictureFromCamera:(id)sender;
+-(IBAction)takePictureFromGallery:(id)sender;
 
 @end
 

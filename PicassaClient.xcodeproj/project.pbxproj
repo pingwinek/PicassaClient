@@ -19,6 +19,7 @@
 		0423D55D1D9F12340070BA4D /* AlbumCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D55C1D9F12340070BA4D /* AlbumCell.m */; };
 		0423D5621D9F16140070BA4D /* AlbumPhotoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5611D9F16140070BA4D /* AlbumPhotoCell.m */; };
 		0423D5651D9F16B40070BA4D /* GalleryDetailsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5641D9F16B40070BA4D /* GalleryDetailsVC.m */; };
+		0423D56A1D9F93870070BA4D /* EditPicVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0423D5691D9F93870070BA4D /* EditPicVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		0423D5611D9F16140070BA4D /* AlbumPhotoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumPhotoCell.m; sourceTree = "<group>"; };
 		0423D5631D9F16B40070BA4D /* GalleryDetailsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GalleryDetailsVC.h; sourceTree = "<group>"; };
 		0423D5641D9F16B40070BA4D /* GalleryDetailsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GalleryDetailsVC.m; sourceTree = "<group>"; };
+		0423D5681D9F93870070BA4D /* EditPicVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPicVC.h; sourceTree = "<group>"; };
+		0423D5691D9F93870070BA4D /* EditPicVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPicVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +191,8 @@
 		0423D5671D9F8BDA0070BA4D /* EditPicVC */ = {
 			isa = PBXGroup;
 			children = (
+				0423D5681D9F93870070BA4D /* EditPicVC.h */,
+				0423D5691D9F93870070BA4D /* EditPicVC.m */,
 			);
 			name = EditPicVC;
 			sourceTree = "<group>";
@@ -323,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0423D5621D9F16140070BA4D /* AlbumPhotoCell.m in Sources */,
+				0423D56A1D9F93870070BA4D /* EditPicVC.m in Sources */,
 				0423D5261D9ED14C0070BA4D /* SecondViewController.m in Sources */,
 				0423D55D1D9F12340070BA4D /* AlbumCell.m in Sources */,
 				0423D5201D9ED14C0070BA4D /* AppDelegate.m in Sources */,

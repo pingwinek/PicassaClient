@@ -7,6 +7,7 @@
 //
 
 #import "SecondViewController.h"
+#import "EditPicVC.h"
 
 @interface SecondViewController ()
 
@@ -22,6 +23,39 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)takePictureFromCamera:(id)sender{
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    [imagePicker setDelegate:self];
+    
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [self presentModalViewController:imagePicker animated:YES];
+    }
+    else{
+        UIButton *tmp = (UIButton *)sender;
+        [tmp setTitle:@"Camera not available" forState:UIControlStateNormal];
+    }
+}
+
+-(IBAction)takePictureFromGallery:(id)sender{
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    
+    [imagePicker setDelegate:self];
+    [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+    [self presentModalViewController:imagePicker animated:YES];
+}
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    
+    EditPicVC *editPicVC = [[self storyboard] instantiateViewControllerWithIdentifier:@"EditPictureVC"];
+    [editPicVC setImg:image];
+    
+    [self dismissModalViewControllerAnimated:YES];
+    
+    [self.navigationController pushViewController:editPicVC animated:YES];
 }
 
 @end
