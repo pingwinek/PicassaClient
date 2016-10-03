@@ -110,8 +110,15 @@
         
         for(NSString *str in list)
         {
+            if([str isEqualToString:@"CISepiaTone"] ||
+               [str isEqualToString:@"CIColorCube"] ||
+               [str isEqualToString:@"CIColorMonochrome"] ||
+               [str isEqualToString:@"CIColorInvert"]){
             CIFilter *filter = [CIFilter filterWithName:str keysAndValues:kCIInputImageKey, _filterPreviewImage, nil];
             [_filtersArray addObject:filter];
+                
+            NSLog(@"%@, ",filter.name);
+            }
         }
         
         __block int offsetX = 10;
@@ -138,6 +145,10 @@
             else if([f.name isEqualToString:@"CIColorCube"])
             {
                 filterNameLabel.text =  @"Cube";
+            }
+            else if([f.name isEqualToString:@"CIColorInvert"])
+            {
+                filterNameLabel.text =  @"Invert";
             }
             else
             {
