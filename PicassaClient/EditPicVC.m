@@ -26,6 +26,7 @@
     //init
     _filtersArray = [[NSMutableArray alloc] initWithCapacity:10];
     _currentCGImage = _img.CGImage;
+    
     //set image
     _filterPreviewImage = [CIImage imageWithCGImage:self.img.CGImage];
     
@@ -43,11 +44,38 @@
     self.navigationItem.rightBarButtonItem = editBtn;
     
     [_imgView setImage:_img];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resignActive:) name:UIApplicationWillResignActiveNotification object:nil];
+    
+    /*
+    //shadow
+    CALayer *shadowLayer = [(AppDelegate *)[[UIApplication sharedApplication] delegate] createShadowWithFrame:CGRectMake(0, 0, 320, 5)];
+    [self.view.layer addSublayer:shadowLayer];
+     */
+}
+
+-(void)viewDidUnload{
+    
+    [self setViewFilterPreview:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [super viewDidUnload];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    [_imgView setImage:nil];
+    _img = nil;
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
+    return (interfaceOrientation == UIInterfaceOrientationIsPortrait);
+}
+
+-(void)resignActive:(NSNotification *)n{
+    
+    NSLog(@"APP RESIGN ACTIVE");
 }
 
 #pragma marks - Buttons Action
@@ -186,7 +214,6 @@
     NSString *message = @"Choose your action";
     NSString *cancelBtn = @"Cancel";
     NSString *exportImg = @"Export image";
-    NSString *goBack = @"Quit";
     
     UIAlertController * view=   [UIAlertController
                                  alertControllerWithTitle:nil
