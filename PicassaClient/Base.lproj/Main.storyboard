@@ -256,22 +256,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GdZ-Y7-JvW">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zAG-8K-n7H">
-                                <rect key="frame" x="0.0" y="539" width="375" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zAG-8K-n7H">
+                                <rect key="frame" x="0.0" y="515" width="375" height="103"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="103" id="MfC-PT-7gR"/>
+                                    <constraint firstAttribute="height" constant="103" id="zv3-am-vdO"/>
+                                </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GdZ-Y7-JvW">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="375" id="siq-r2-DGX"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="GdZ-Y7-JvW" firstAttribute="top" secondItem="5cL-Mg-Qz2" secondAttribute="topMargin" id="Uxo-aL-DRl"/>
-                            <constraint firstItem="GdZ-Y7-JvW" firstAttribute="leading" secondItem="5cL-Mg-Qz2" secondAttribute="leadingMargin" constant="-20" id="ami-E7-spR"/>
-                            <constraint firstItem="gwW-fY-m9Y" firstAttribute="top" secondItem="GdZ-Y7-JvW" secondAttribute="bottom" id="bvj-aR-lk1"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="GdZ-Y7-JvW" secondAttribute="trailing" constant="-20" id="urS-sY-XMa"/>
+                            <constraint firstItem="gwW-fY-m9Y" firstAttribute="top" secondItem="zAG-8K-n7H" secondAttribute="bottom" id="JWs-GP-K2e"/>
+                            <constraint firstItem="gwW-fY-m9Y" firstAttribute="top" secondItem="GdZ-Y7-JvW" secondAttribute="bottom" id="LAY-dZ-pur"/>
+                            <constraint firstAttribute="trailing" secondItem="GdZ-Y7-JvW" secondAttribute="trailing" id="NbC-H7-I9d"/>
+                            <constraint firstItem="zAG-8K-n7H" firstAttribute="leading" secondItem="5cL-Mg-Qz2" secondAttribute="leading" id="Ygw-9B-RNp"/>
+                            <constraint firstItem="GdZ-Y7-JvW" firstAttribute="leading" secondItem="5cL-Mg-Qz2" secondAttribute="leading" id="hZ5-Kt-yZz"/>
+                            <constraint firstItem="GdZ-Y7-JvW" firstAttribute="top" secondItem="x3F-NC-eQ9" secondAttribute="bottom" id="o71-hu-Ffy"/>
+                            <constraint firstAttribute="trailing" secondItem="zAG-8K-n7H" secondAttribute="trailing" id="tui-Lb-K2J"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="imgView" destination="GdZ-Y7-JvW" id="QM3-kJ-oNE"/>

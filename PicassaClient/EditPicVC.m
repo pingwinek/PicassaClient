@@ -22,8 +22,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //init
+    _filtersArray = [[NSMutableArray alloc] initWithCapacity:10];
+    
     //set image
     _filterPreviewImage = [CIImage imageWithCGImage:self.img.CGImage];
+    _context = [CIContext contextWithOptions:nil];
     [self loadFilters];
     
     //navigation bar
@@ -72,47 +76,51 @@
     
     dispatch_async(dispatch_get_current_queue(), ^{
         
-        //create sepia filter
-        CIFilter *sepiaFilter = [CIFilter filterWithName:@"CISepiaTone"
-                                 keysAndValues:kCIInputImageKey, _filterPreviewImage,
-                                 @"inputIntensity", [NSNumber numberWithFloat:0.8], nil];
+        NSArray *list = [CIFilter filterNamesInCategories:[NSArray arrayWithObjects:kCICategoryBuiltIn, kCICategoryColorEffect, nil]];
         
-        //create monochrome filter
-        CIFilter *colorMonochrome = [CIFilter filterWithName:@"CIColorMonochrome"
-                                           keysAndValues:kCIInputImageKey, _filterPreviewImage,
-                                 @"inputColor", [CIColor colorWithString:@"Red"],
-                                 @"inputIntensity", [NSNumber numberWithFloat:0.8], nil];
-        
-        //create dictionary obiect and add filters
-        _filters = [[NSMutableDictionary alloc] init];
-        [_filters setObject:sepiaFilter forKey:@"Sepia"];
-        [_filters setObject:colorMonochrome forKey:@"Mono"];
+        for(NSString *str in list)
+        {
+            CIFilter *filter = [CIFilter filterWithName:str keysAndValues:kCIInputImageKey, _filterPreviewImage, nil];
+            [_filtersArray addObject:filter];
+        }
         
         __block int offsetX = 10;
         __block int i = 0;
         
         //loop
-        [_filters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop
-            ){
+        for(CIFilter *f in _filtersArray){
     
             UIView *filterView = [[UIView alloc] initWithFrame:CGRectMake(offsetX+5, 10, 60, 60)];
     
             // create a label to display the name
             UILabel *filterNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, filterView.bounds.size.width, 8)];
-    
             filterNameLabel.center = CGPointMake(filterView.bounds.size.width/2, filterView.bounds.size.height + filterNameLabel.bounds.size.height + 10);
             
-            //create filter object from dictionary object
-            CIFilter *filter = (CIFilter *)obj;
-    
-            filterNameLabel.text =  filter.name;
+            //properties of filter name label
+            if([f.name isEqualToString:@"CISepiaTone"])
+            {
+                filterNameLabel.text =  @"Sepia";
+            }
+            else if([f.name isEqualToString:@"CIColorMonochrome"])
+            {
+                filterNameLabel.text =  @"Monochrome";
+            }
+            else if([f.name isEqualToString:@"CIColorCube"])
+            {
+                filterNameLabel.text =  @"Cube";
+            }
+            else
+            {
+                filterNameLabel.text =  f.name;
+            }
+            
             filterNameLabel.backgroundColor = [UIColor clearColor];
             filterNameLabel.textColor = [UIColor whiteColor];
-            filterNameLabel.font = [UIFont fontWithName:@"AppleColorEmoji" size:10];
+            filterNameLabel.font = [UIFont fontWithName:@"AppleColorEmoji" size:8];
             filterNameLabel.textAlignment = NSTextAlignmentCenter;
     
             //create view after filter
-            CIImage *outputImage = [filter outputImage];
+            CIImage *outputImage = [f outputImage];
     
             CGImageRef cgimg = [_context createCGImage:outputImage fromRect:[outputImage extent]];
     
@@ -146,7 +154,7 @@
     
             offsetX += filterView.bounds.size.width + 10;
             i++;
-        }];
+        }
     });
 }
 
@@ -154,8 +162,7 @@
     
     dispatch_async(dispatch_get_current_queue(), ^{
         int filterIndex = [(UITapGestureRecognizer *) sender view].tag;
-        CIFilter *filter = [_filters objectForKey:[[_filters allKeys]
-                                                   objectAtIndex:filterIndex]];
+        CIFilter *filter = [_filtersArray objectAtIndex:filterIndex];
         
         CIImage *outputImage = [filter outputImage];
         CGImageRef cgimg = [_context createCGImage:outputImage fromRect:[outputImage extent]];
