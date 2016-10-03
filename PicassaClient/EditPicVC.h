@@ -19,5 +19,6 @@
 @property(nonatomic,strong) NSMutableDictionary *filters;
 @property(nonatomic,strong) CIContext *context;
 @property(nonatomic,strong) NSMutableArray *filtersArray;
+@property(nonatomic) CGImageRef currentCGImage;
 
 @end

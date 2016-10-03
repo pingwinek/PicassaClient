@@ -8,6 +8,7 @@
 
 #import "EditPicVC.h"
 #import <QuartzCore/QuartzCore.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @interface EditPicVC ()
 
@@ -24,9 +25,10 @@
     
     //init
     _filtersArray = [[NSMutableArray alloc] initWithCapacity:10];
-    
+    _currentCGImage = _img.CGImage;
     //set image
     _filterPreviewImage = [CIImage imageWithCGImage:self.img.CGImage];
+    
     _context = [CIContext contextWithOptions:nil];
     [self loadFilters];
     
@@ -167,6 +169,9 @@
         CIImage *outputImage = [filter outputImage];
         CGImageRef cgimg = [_context createCGImage:outputImage fromRect:[outputImage extent]];
         
+        _currentCGImage = cgimg;
+        _filterPreviewImage = outputImage;
+        
         UIImage *finalImage = [UIImage imageWithCGImage:cgimg];
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -175,6 +180,67 @@
         CGImageRelease(cgimg);
     });
 }
+
+-(IBAction)action:(id)sender{
+    
+    NSString *message = @"Choose your action";
+    NSString *cancelBtn = @"Cancel";
+    NSString *exportImg = @"Export image";
+    NSString *goBack = @"Quit";
+    
+    UIAlertController * view=   [UIAlertController
+                                 alertControllerWithTitle:nil
+                                 message:message
+                                 preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction* ok = [UIAlertAction
+                         actionWithTitle:exportImg
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [self exportToGallery];
+                             
+                             [view dismissViewControllerAnimated:YES completion:nil];
+                             
+                         }];
+    UIAlertAction* cancel = [UIAlertAction
+                             actionWithTitle:cancelBtn
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [view dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+    
+    
+    [view addAction:ok];
+    [view addAction:cancel];
+    [self presentViewController:view animated:YES completion:nil];
+}
+
+-(void)exportToGallery{
+    ALAssetsLibrary *assetsLib = [ALAssetsLibrary new];
+    [assetsLib writeImageToSavedPhotosAlbum:_currentCGImage
+                                   metadata:[_filterPreviewImage properties]
+                            completionBlock:^(NSURL *url, NSError *error){
+                                UIAlertController *view = [UIAlertController
+                                                             alertControllerWithTitle:@"Information"
+                                                             message:@"Your image has benn transfered to local gallery"
+                                                             preferredStyle:UIAlertControllerStyleActionSheet];
+                                
+                                UIAlertAction* cancel = [UIAlertAction
+                                                         actionWithTitle:@"OK"
+                                                         style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * action)
+                                                         {
+                                                             [view dismissViewControllerAnimated:YES completion:nil];
+                                                             
+                                                         }];
+                                
+                                [view addAction:cancel];
+                                [self presentViewController:view animated:YES completion:nil];
+                            }];
+     }
 
 /*
 #pragma mark - Navigation
