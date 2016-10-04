@@ -7,6 +7,8 @@
 //
 
 #import "EditPicVC.h"
+#import "SecondViewController.h"
+
 #import <QuartzCore/QuartzCore.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
@@ -106,26 +108,45 @@
     
     dispatch_async(dispatch_get_current_queue(), ^{
         
-        NSArray *list = [CIFilter filterNamesInCategories:[NSArray arrayWithObjects:kCICategoryBuiltIn, kCICategoryColorEffect, nil]];
+        //create sepia filter
+        CIFilter *sepiaFilter = [CIFilter filterWithName:@"CISepiaTone"
+                                           keysAndValues:kCIInputImageKey, _filterPreviewImage,
+                                 @"inputIntensity", [NSNumber numberWithFloat:0.8], nil];
         
-        for(NSString *str in list)
-        {
-            if([str isEqualToString:@"CISepiaTone"] ||
-               [str isEqualToString:@"CIColorCube"] ||
-               [str isEqualToString:@"CIColorMonochrome"] ||
-               [str isEqualToString:@"CIColorInvert"]){
-            CIFilter *filter = [CIFilter filterWithName:str keysAndValues:kCIInputImageKey, _filterPreviewImage, nil];
-            [_filtersArray addObject:filter];
-                
-            NSLog(@"%@, ",filter.name);
-            }
-        }
+        //create monochrome filter
+        CIFilter *colorMonochrome = [CIFilter filterWithName:@"CIColorMonochrome"
+                                               keysAndValues:kCIInputImageKey, _filterPreviewImage,
+                                     @"inputColor", [CIColor colorWithString:@"Red"],
+                                     @"inputIntensity", [NSNumber numberWithFloat:0.8], nil];
+        
+        //create color cube
+        CIFilter *cubeFilter = [CIFilter filterWithName:@"CIColorMatrix"
+                                withInputParameters: @{
+                                                       kCIInputImageKey: _filterPreviewImage,
+                                                       @"inputRVector": [CIVector vectorWithX:-1 Y:0 Z:1],
+                                                       @"inputGVector": [CIVector vectorWithX:0 Y:-1 Z:0],
+                                                       @"inputBVector": [CIVector vectorWithX:0 Y:0 Z:-1],
+                                                       @"inputBiasVector": [CIVector vectorWithX:1 Y:1 Z:1],
+                                                       }];
+        
+        
+        //create color invert
+        CIFilter *invertFilter = [CIFilter filterWithName:@"CIColorInvert"
+                                            keysAndValues: kCIInputImageKey, _filterPreviewImage,nil];
+        
+        //create dictionary obiect and add filters
+        _filters = [[NSMutableDictionary alloc] init];
+        [_filters setObject:sepiaFilter forKey:@"Sepia"];
+        [_filters setObject:colorMonochrome forKey:@"Mono"];
+        [_filters setObject:cubeFilter forKey:@"Matrix"];
+        [_filters setObject:invertFilter forKey:@"Invert"];
         
         __block int offsetX = 10;
         __block int i = 0;
         
         //loop
-        for(CIFilter *f in _filtersArray){
+        [_filters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop
+            ){
     
             UIView *filterView = [[UIView alloc] initWithFrame:CGRectMake(offsetX+5, 10, 60, 60)];
     
@@ -134,25 +155,27 @@
             filterNameLabel.center = CGPointMake(filterView.bounds.size.width/2, filterView.bounds.size.height + filterNameLabel.bounds.size.height + 10);
             
             //properties of filter name label
-            if([f.name isEqualToString:@"CISepiaTone"])
+            CIFilter *filter = (CIFilter *)obj;
+            
+            if([filter.name isEqualToString:@"CISepiaTone"])
             {
                 filterNameLabel.text =  @"Sepia";
             }
-            else if([f.name isEqualToString:@"CIColorMonochrome"])
+            else if([filter.name isEqualToString:@"CIColorMonochrome"])
             {
                 filterNameLabel.text =  @"Monochrome";
             }
-            else if([f.name isEqualToString:@"CIColorCube"])
+            else if([filter.name isEqualToString:@"CIColorMatrix"])
             {
-                filterNameLabel.text =  @"Cube";
+                filterNameLabel.text =  @"Matrix";
             }
-            else if([f.name isEqualToString:@"CIColorInvert"])
+            else if([filter.name isEqualToString:@"CIColorInvert"])
             {
                 filterNameLabel.text =  @"Invert";
             }
             else
             {
-                filterNameLabel.text =  f.name;
+                filterNameLabel.text =  filter.name;
             }
             
             filterNameLabel.backgroundColor = [UIColor clearColor];
@@ -161,7 +184,7 @@
             filterNameLabel.textAlignment = NSTextAlignmentCenter;
     
             //create view after filter
-            CIImage *outputImage = [f outputImage];
+            CIImage *outputImage = [filter outputImage];
     
             CGImageRef cgimg = [_context createCGImage:outputImage fromRect:[outputImage extent]];
     
@@ -195,7 +218,9 @@
     
             offsetX += filterView.bounds.size.width + 10;
             i++;
-        }
+            
+            CFRelease(cgimg);
+        }];
     });
 }
 
@@ -203,7 +228,8 @@
     
     dispatch_async(dispatch_get_current_queue(), ^{
         int filterIndex = [(UITapGestureRecognizer *) sender view].tag;
-        CIFilter *filter = [_filtersArray objectAtIndex:filterIndex];
+        CIFilter *filter = [_filters objectForKey:[[_filters allKeys]
+                                                   objectAtIndex:filterIndex]];
         
         CIImage *outputImage = [filter outputImage];
         CGImageRef cgimg = [_context createCGImage:outputImage fromRect:[outputImage extent]];
@@ -272,6 +298,8 @@
                                                          handler:^(UIAlertAction * action)
                                                          {
                                                              [view dismissViewControllerAnimated:YES completion:nil];
+                                                             SecondViewController *secViewCont = [[self storyboard] instantiateViewControllerWithIdentifier:@"SecViewCont"];
+                                                             [self.navigationController pushViewController:secViewCont animated:YES];
                                                              
                                                          }];
                                 
