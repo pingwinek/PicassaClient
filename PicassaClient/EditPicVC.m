@@ -26,7 +26,6 @@
     [super viewDidLoad];
     
     //init
-    _filtersArray = [[NSMutableArray alloc] initWithCapacity:10];
     _currentCGImage = _img.CGImage;
     
     //set image
