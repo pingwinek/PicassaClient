@@ -77,6 +77,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="uAh-Q1-eC1"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="albumTableView" destination="mMo-uM-lyn" id="ygN-51-SxJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>

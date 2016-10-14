@@ -14,6 +14,7 @@
 @property (nonatomic, weak) GDataServiceGooglePhotos *service;
 @property (nonatomic, strong) MBProgressHUD *HUD;
 @property (nonatomic, strong) NSMutableArray *albums;
+@property (weak, nonatomic) IBOutlet UITableView *albumTableView;
 
 @end
 

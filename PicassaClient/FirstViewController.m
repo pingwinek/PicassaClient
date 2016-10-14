@@ -30,12 +30,53 @@
     _HUD.dimBackground = YES;
     _HUD.delegate = self;
     _HUD.labelText = @"Loading..";
-    _HUD.detailsLabelText = @"Getting data from Picassa";
+    _HUD.detailsLabelText = @"Getting data from Picasa";
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    NSURL *feedURL = [GDataServiceGooglePhotos photoFeedURLForUserID:CONST_USER
+                                                             albumID:nil
+                                                           albumName:nil
+                                                             photoID:nil
+                                                                kind:nil
+                                                              access:nil];
+    
+    [_service fetchFeedWithURL:feedURL
+             delegate:self
+             didFinishSelector:@selector(albumListFetchTicket:finishedWithFeed:error:)];
+    
+    [_HUD show:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma marks - View Helper
+-(void)hudWasHidden:(MBProgressHUD *)hud{
+    [_HUD removeFromSuperview];
+}
+
+#pragma mark - GData Service
+-(void)albumListFetchTicket:(GDataServiceTicket *)ticket finishedWithFeed:(GDataFeedPhotoUser *)feed error:(NSError *)error{
+    NSLog(@"album fetched");
+    if(!error){
+        NSLog(@"OK");
+        _albums = [NSMutableArray arrayWithArray:[feed entries]];
+        NSLog(@"%d albums", [_albums count]);
+        _albums = [NSMutableArray arrayWithArray:[_albums sortedArrayUsingComparator:^(id a, id b){
+            GDataEntryPhotoAlbum *obj1 = (GDataEntryPhotoAlbum *)a;
+            GDataEntryPhotoAlbum *obj2 = (GDataEntryPhotoAlbum *)b;
+            NSString *first = [obj1.title stringValue];
+            NSString *second = [obj2.title stringValue];
+            return [first compare:second];
+        }]];
+        [_albumTableView reloadData];
+    }
+    [_HUD hide:YES];
 }
 
 #pragma mark - Table view data source
@@ -52,12 +93,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 1;
+    return [_albums count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     AlbumCell *cell = [tableView dequeueReusableCellWithIdentifier:@"albumCellID"];
+    if (cell == nil) {
+        cell = [[AlbumCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"albumCellID"];
+    }
+    
+    [cell setAlbum:[_albums objectAtIndex:indexPath.row]];
     
     return cell;
 }
