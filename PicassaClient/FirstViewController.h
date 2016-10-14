@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface FirstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface FirstViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, MBProgressHUDDelegate>
+
+@property (nonatomic, weak) GDataServiceGooglePhotos *service;
+@property (nonatomic, strong) MBProgressHUD *HUD;
+@property (nonatomic, strong) NSMutableArray *albums;
 
 @end
 

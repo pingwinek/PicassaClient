@@ -25,6 +25,8 @@
 		0423D56E1D9FF19D0070BA4D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0423D56D1D9FF19D0070BA4D /* QuartzCore.framework */; };
 		0423D5701D9FF1A50070BA4D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0423D56F1D9FF1A50070BA4D /* AssetsLibrary.framework */; };
 		046D4C521DAFEA6E00F47F3B /* libGDataTouchStaticLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 046D4C511DAFEA6E00F47F3B /* libGDataTouchStaticLib.a */; };
+		046D4D9C1DB0F65400F47F3B /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 046D4D9A1DB0F65400F47F3B /* MBProgressHUD.m */; };
+		046D4D9D1DB0F65400F47F3B /* README.mdown in Sources */ = {isa = PBXBuildFile; fileRef = 046D4D9B1DB0F65400F47F3B /* README.mdown */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -399,6 +401,11 @@
 		046D4D941DAFEA7D00F47F3B /* GTMOAuth2ViewControllerTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMOAuth2ViewControllerTouch.h; sourceTree = "<group>"; };
 		046D4D951DAFEA7D00F47F3B /* GTMReadMonitorInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMReadMonitorInputStream.h; sourceTree = "<group>"; };
 		046D4D961DAFEA7D00F47F3B /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		046D4D971DB0D76700F47F3B /* PicassaClient-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PicassaClient-Prefix.pch"; sourceTree = "<group>"; };
+		046D4D991DB0F65400F47F3B /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		046D4D9A1DB0F65400F47F3B /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		046D4D9B1DB0F65400F47F3B /* README.mdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.mdown; sourceTree = "<group>"; };
+		046D4D9F1DB0F7BC00F47F3B /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -434,6 +441,7 @@
 		0423D50F1D9ED14C0070BA4D = {
 			isa = PBXGroup;
 			children = (
+				046D4D981DB0F63500F47F3B /* MBProgressHUD */,
 				046D4C531DAFEA7C00F47F3B /* Headers */,
 				046D4C511DAFEA6E00F47F3B /* libGDataTouchStaticLib.a */,
 				0423644A1DAFC103001EDDAB /* libxml2.tbd */,
@@ -460,6 +468,7 @@
 		0423D51A1D9ED14C0070BA4D /* PicassaClient */ = {
 			isa = PBXGroup;
 			children = (
+				046D4D9E1DB0F79900F47F3B /* Other */,
 				0423D55E1D9F12420070BA4D /* Classes */,
 				0423D5271D9ED14C0070BA4D /* Main.storyboard */,
 				0423D52A1D9ED14C0070BA4D /* Assets.xcassets */,
@@ -474,6 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				0423D51C1D9ED14C0070BA4D /* main.m */,
+				046D4D971DB0D76700F47F3B /* PicassaClient-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -871,6 +881,24 @@
 			path = Headers;
 			sourceTree = "<group>";
 		};
+		046D4D981DB0F63500F47F3B /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				046D4D991DB0F65400F47F3B /* MBProgressHUD.h */,
+				046D4D9A1DB0F65400F47F3B /* MBProgressHUD.m */,
+				046D4D9B1DB0F65400F47F3B /* README.mdown */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		046D4D9E1DB0F79900F47F3B /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				046D4D9F1DB0F7BC00F47F3B /* Constants.h */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1006,10 +1034,12 @@
 				0423D56A1D9F93870070BA4D /* EditPicVC.m in Sources */,
 				0423D5261D9ED14C0070BA4D /* SecondViewController.m in Sources */,
 				0423D55D1D9F12340070BA4D /* AlbumCell.m in Sources */,
+				046D4D9C1DB0F65400F47F3B /* MBProgressHUD.m in Sources */,
 				0423D5201D9ED14C0070BA4D /* AppDelegate.m in Sources */,
 				0423D5231D9ED14C0070BA4D /* FirstViewController.m in Sources */,
 				0423D51D1D9ED14C0070BA4D /* main.m in Sources */,
 				0423D5651D9F16B40070BA4D /* GalleryDetailsVC.m in Sources */,
+				046D4D9D1DB0F65400F47F3B /* README.mdown in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1152,6 +1182,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PicassaClient-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = PicassaClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1169,6 +1200,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/$(PROJECT_NAME)/PicassaClient-Prefix.pch";
 				HEADER_SEARCH_PATHS = /usr/include/libxml2;
 				INFOPLIST_FILE = PicassaClient/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

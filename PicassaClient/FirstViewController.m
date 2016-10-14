@@ -9,6 +9,8 @@
 #import "FirstViewController.h"
 #import "AlbumCell.h"
 #import "GalleryDetailsVC.h"
+#import "AppDelegate.h"
+#import "Constants.h"
 
 @interface FirstViewController ()
 
@@ -18,7 +20,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    _albums = [[NSMutableArray alloc] initWithCapacity:5];
+    [_service setUserCredentialsWithUsername: CONST_USER password: CONST_PASSWORD];
+    
+    //HUD
+    _HUD = [[MBProgressHUD alloc] initWithView: self.view];
+    [self.view addSubview:_HUD];
+    _HUD.dimBackground = YES;
+    _HUD.delegate = self;
+    _HUD.labelText = @"Loading..";
+    _HUD.detailsLabelText = @"Getting data from Picassa";
 }
 
 - (void)didReceiveMemoryWarning {

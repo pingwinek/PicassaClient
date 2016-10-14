@@ -1,0 +1,17 @@
+//
+//  PicassaClient-Prefix.pch
+//  PicassaClient
+//
+//  Created by mac on 14.10.2016.
+//  Copyright © 2016 mac. All rights reserved.
+//
+
+#ifndef PicassaClient_Prefix_pch
+
+#define PicassaClient_Prefix_pch
+
+#endif /* PicassaClient_Prefix_pch */
+
+#ifdef __OBJC__
+    #import "GData.h"
+#endif
