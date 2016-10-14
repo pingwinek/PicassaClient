@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface GalleryDetailsVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface GalleryDetailsVC : UIViewController <UITableViewDataSource, UITableViewDelegate, MBProgressHUDDelegate>
 
 @property(nonatomic,strong) NSString *albumTitle;
+
+@property (nonatomic, retain) GDataEntryPhotoAlbum *album;
+@property (nonatomic, weak) GDataServiceGooglePhotos *service;
+@property (nonatomic, strong) GDataFeedPhotoAlbum *photoAlbumFeed;
+@property (nonatomic, strong) MBProgressHUD *HUD;
+
+@property (nonatomic, weak) IBOutlet UITableView *tablePictures;
 
 @end

@@ -79,6 +79,10 @@
     [_HUD hide:YES];
 }
 
+-(void)deselectCell:(UITableViewCell *)cell{
+    [cell setSelected:NO];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -108,12 +112,23 @@
     return cell;
 }
 
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
+    AlbumCell *cell = (AlbumCell *)[tableView cellForRowAtIndexPath:indexPath];
+    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:cell.album, @"album", cell.photos, @"photos", nil];
+    [self performSegueWithIdentifier:@"albumDetailsSegue" sender:dict];
+    [self performSelector:@selector(deselectCell:) withObject:[tableView cellForRowAtIndexPath:indexPath] afterDelay:.5];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if([segue.identifier isEqualToString:@"albumDetailsSegue"]){
         
         GalleryDetailsVC *gallery = segue.destinationViewController;
-        gallery.albumTitle = @"Our new album";
+        
+        GDataEntryPhotoAlbum *album = [(NSDictionary *)sender objectForKey:@"album"];
+        GDataFeedPhotoAlbum *photos = [(NSDictionary *)sender objectForKey:@"photos"];
+        [gallery setAlbum:album];
+        [gallery setPhotoAlbumFeed:photos];
     }
 }
 
